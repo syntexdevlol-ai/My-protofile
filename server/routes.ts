@@ -35,7 +35,9 @@ export async function registerRoutes(
           }
 
           // Create excerpt (first 2 non-empty lines)
-          const lines = fullDescription.split('\n').filter(line => line.trim() !== '');
+          const lines = fullDescription.split('\n')
+            .map(line => line.trim())
+            .filter(line => line !== '' && !line.startsWith('#'));
           const excerpt = lines.slice(0, 2).join('\n');
 
           projects.push({
